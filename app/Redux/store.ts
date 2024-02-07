@@ -6,8 +6,9 @@ import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-import queryReducer from './slice/query/query';
-import basketReducer from './slice/basket/basketSlice';
+
+import categoryReducer from './slice/category/categorySlice';
+import usersReducer from './slice/users/usersSlice';
 
 const createNoopStorage = () => {
     return {
@@ -30,8 +31,9 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-    queryReducer,
-    basketReducer,
+    categoryReducer,
+    usersReducer,
+    
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

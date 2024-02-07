@@ -5,10 +5,6 @@ import { Providers } from "./Redux/provider";
 import { v1 } from "uuid";
 
 import { Suspense } from "react";
-import Loading from "./common/components/Loading/Loading";
-
-import Header from "./common/components/Header/Header";
-import Footer from "./common/components/Footer/Footer";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -19,13 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en">
 			<body key={v1()}>
-				<Providers>
-					<Suspense fallback={<Loading></Loading>}>
-						<Header />
-						{children}
-						<Footer></Footer>
-					</Suspense>
-				</Providers>
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	);
