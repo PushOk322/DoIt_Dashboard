@@ -1,31 +1,69 @@
-"use client";
-
-import axios from "axios";
-import React, { FC, useEffect, useState } from "react";
-import IconRenderer from "../../ui/Icons/IconRenderer";
-import Image from "next/image";
-import Link from "next/dist/client/link";
-
-import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/app/Redux/store";
-import { useAppDispatch } from "@/app/Redux/store";
-
+// Table.tsx
+import React, { FC, useEffect } from "react";
+import "./Table.scss";
+import { useAppSelector, useAppDispatch } from "@/app/Redux/store";
 import { fetchUsersData } from "@/app/Redux/slice/users/usersSlice";
+import { fetchRecipesData } from "@/app/Redux/slice/recipes/recipesSlice";
+import { fetchProductsData } from "@/app/Redux/slice/products/productsSlice";
+import { fetchCartsData } from "@/app/Redux/slice/carts/cartsSlice";
+import { fetchPostsData } from "@/app/Redux/slice/posts/postsSlice";
+import TableHead from "./TableHead/TableHead";
+import TableBody from "./TableBody/TableBody";
 
-export default function Table() {
-	const dispatch = useAppDispatch(); // Retrieve dispatch function from Redux store
-	const users = useAppSelector((state) => state.usersReducer.users);
+const Table: FC = () => {
+	const dispatch = useAppDispatch();
+	const chosenCategory = useAppSelector((state) => state.categoryReducer.categories.chosenCategory.toLowerCase());
 
 	useEffect(() => {
-		// Dispatch fetchUsersData action to initiate data fetching
-		dispatch(fetchUsersData());
-	}, [dispatch]); // Pass dispatch as a dependency to useEffect
+		switch (chosenCategory) {
+			case "users":
+				dispatch(fetchUsersData());
+				break;
+			case "recipes":
+				dispatch(fetchRecipesData());
+				break;
+			case "products":
+				dispatch(fetchProductsData());
+				break;
+			case "carts":
+				dispatch(fetchCartsData());
+				break;
+			case "posts":
+				dispatch(fetchPostsData());
+				break;
+			default:
+				break;
+		}
+	}, [chosenCategory, dispatch]);
+
+	let data: any;
+
+	switch (chosenCategory) {
+		case "users":
+			data = useAppSelector((state) => state.usersReducer.users);
+			break;
+		case "recipes":
+			data = useAppSelector((state) => state.recipesReducer.recipes);
+			break;
+		case "products":
+			data = useAppSelector((state) => state.productsReducer.products);
+			break;
+		case "carts":
+			data = useAppSelector((state) => state.cartsReducer.carts);
+			break;
+		case "posts":
+			data = useAppSelector((state) => state.postsReducer.posts);
+			break;
+		default:
+			data = [];
+	}
 
 	return (
-		<>
-			<div className="users-list" style={{ width: 2000, height: 2000 }}>
-				{users ? users[0].username : "no"}
-			</div>
-		</>
+		<table className="table">
+			<TableHead data={data} />
+			<TableBody data={data} />
+		</table>
 	);
-}
+};
+
+export default Table;

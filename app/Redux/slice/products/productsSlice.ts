@@ -22,7 +22,6 @@ export const fetchProductsData = createAsyncThunk("productsData/fetchProductsDat
 	try {
 		const response = await fetch("https://dummyjson.com/products"); // Replace with your API endpoint
 		const data = await response.json();
-		console.log("🚀 ~ data:", data);
 
 		return data;
 	} catch (error) {

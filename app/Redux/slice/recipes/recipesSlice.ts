@@ -5,8 +5,8 @@ export interface IRecipes {
 	cuisine: string;
 	name: string;
 	rating: number;
-	preptime: string;
-	cooktime: string;
+	preptime: number;
+	cooktime: number;
 }
 
 export interface IRecipessData {
@@ -22,7 +22,6 @@ export const fetchRecipesData = createAsyncThunk("recipesData/fetchRecipesData",
 	try {
 		const response = await fetch("https://dummyjson.com/recipes"); // Replace with your API endpoint
 		const data = await response.json();
-		console.log("🚀 ~ data:", data);
 
 		return data;
 	} catch (error) {
@@ -48,7 +47,6 @@ const recipesData = createSlice({
 				preptime: recipes.preptime,
 				cooktime: recipes.cooktime
 			}));
-			console.log("🚀 ~ builder.addCase ~ state.recipess:", state.recipes);
 		});
 	}
 });

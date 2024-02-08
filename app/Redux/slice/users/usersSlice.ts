@@ -21,7 +21,6 @@ export const fetchUsersData = createAsyncThunk("usersData/fetchUsersData", async
 	try {
 		const response = await fetch("https://dummyjson.com/users"); // Replace with your API endpoint
 		const data = await response.json();
-		console.log("🚀 ~ data:", data);
 
 		return data;
 	} catch (error) {
@@ -46,7 +45,6 @@ const usersData = createSlice({
 				gender: user.gender,
 				password: user.password
 			}));
-			console.log("🚀 ~ builder.addCase ~ state.users:", state.users);
 		});
 	}
 });

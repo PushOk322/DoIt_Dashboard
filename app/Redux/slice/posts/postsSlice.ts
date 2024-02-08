@@ -20,7 +20,6 @@ export const fetchPostsData = createAsyncThunk("postsData/fetchPostsData", async
 	try {
 		const response = await fetch("https://dummyjson.com/posts"); // Replace with your API endpoint
 		const data = await response.json();
-		console.log("🚀 ~ data:", data);
 
 		return data;
 	} catch (error) {
@@ -44,7 +43,6 @@ const postsData = createSlice({
 				title: posts.title,
 				tag: posts.tag
 			}));
-			console.log("🚀 ~ builder.addCase ~ state.postss:", state.posts);
 		});
 	}
 });

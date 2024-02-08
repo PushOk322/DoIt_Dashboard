@@ -9,6 +9,10 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import categoryReducer from './slice/category/categorySlice';
 import usersReducer from './slice/users/usersSlice';
+import recipesReducer from './slice/recipes/recipesSlice';
+import cartsReducer from './slice/carts/cartsSlice';
+import postsReducer from './slice/posts/postsSlice';
+import productsReducer from './slice/products/productsSlice';
 
 const createNoopStorage = () => {
     return {
@@ -33,7 +37,10 @@ const persistConfig = {
 const rootReducer = combineReducers({
     categoryReducer,
     usersReducer,
-    
+    recipesReducer,
+    cartsReducer,
+    postsReducer,
+    productsReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
