@@ -12,8 +12,8 @@ export default function TopNav() {
 
 	return (
 		<div className="top-nav">
-			{categories.baseCategoies
-				? categories.baseCategoies.map((category: string, index) => {
+			{categories.baseCategories
+				? categories.baseCategories.map((category: string, index) => {
 						return <TopNavItem buttonValue={category} key={index} />;
 				  })
 				: "no categories"}

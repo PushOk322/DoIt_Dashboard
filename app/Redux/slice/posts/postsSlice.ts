@@ -4,7 +4,7 @@ export interface IPosts {
 	id: number;
 	userId: number;
 	title: string;
-	tag: string;
+	tags: string[];
 }
 
 export interface IPostsData {
@@ -41,7 +41,7 @@ const postsData = createSlice({
 				id: posts.id,
 				userId: posts.userId,
 				title: posts.title,
-				tag: posts.tag
+				tags: posts.tags
 			}));
 		});
 	}

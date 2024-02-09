@@ -1,5 +1,5 @@
 // Table.tsx
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useMemo } from "react";
 import "./Table.scss";
 import { useAppSelector, useAppDispatch } from "@/app/Redux/store";
 import { fetchUsersData } from "@/app/Redux/slice/users/usersSlice";
@@ -58,10 +58,29 @@ const Table: FC = () => {
 			data = [];
 	}
 
+	const chosenSort = useAppSelector((state) => state.sortReducer);
+
+	const sortedData = useMemo(() => {
+		if (!chosenSort) return data;
+
+		return [...data].sort((a, b) => {
+			// Assuming chosenSort is the key in your data object
+			if (chosenSort.sortMethod === true) {
+				if (a[chosenSort.chosenSort] < b[chosenSort.chosenSort]) return -1;
+				if (a[chosenSort.chosenSort] > b[chosenSort.chosenSort]) return 1;
+			} else {
+				if (a[chosenSort.chosenSort] < b[chosenSort.chosenSort]) return 1;
+				if (a[chosenSort.chosenSort] > b[chosenSort.chosenSort]) return -1;
+			}
+
+			return 0;
+		});
+	}, [data, chosenSort]);
+
 	return (
 		<table className="table">
-			<TableHead data={data} />
-			<TableBody data={data} />
+			<TableHead data={sortedData} />
+			<TableBody data={sortedData} />
 		</table>
 	);
 };

@@ -5,14 +5,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface ICategoryData {
 	categories: {
 		chosenCategory: string;
-		baseCategoies: string[];
+		baseCategories: string[];
 	};
 }
 
 const initialState: ICategoryData = {
 	categories: {
 		chosenCategory: "Users",
-		baseCategoies: ["Users", "Products", "Posts", "Carts", "Recipes"]
+		baseCategories: ["Users", "Products", "Posts", "Carts", "Recipes"]
 	}
 };
 

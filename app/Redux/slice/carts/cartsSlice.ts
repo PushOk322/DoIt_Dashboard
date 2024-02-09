@@ -5,7 +5,7 @@ export interface ICart {
 	total: number;
 	discountedTotal: number;
 	userId: number;
-	totalProducts: string;
+	// totalProducts: number;
 }
 
 export interface ICartsData {
@@ -44,7 +44,7 @@ const cartsData = createSlice({
 				total: cart.total,
 				discountedTotal: cart.discountedTotal,
 				userId: cart.userId,
-				totalProducts: cart.totalProducts
+				// totalProducts: cart.totalProducts
 			}));
 			console.log("🚀 ~ builder.addCase ~ state.carts:", state.carts);
 		});

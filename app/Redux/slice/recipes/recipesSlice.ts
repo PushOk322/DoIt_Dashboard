@@ -5,8 +5,8 @@ export interface IRecipes {
 	cuisine: string;
 	name: string;
 	rating: number;
-	preptime: number;
-	cooktime: number;
+	prepTimeMinutes: number;
+	cookTimeMinutes: number;
 }
 
 export interface IRecipessData {
@@ -44,8 +44,8 @@ const recipesData = createSlice({
 				cuisine:recipes.cuisine,
 				name: recipes.name,
 				rating: recipes.rating,
-				preptime: recipes.preptime,
-				cooktime: recipes.cooktime
+				prepTimeMinutes: recipes.prepTimeMinutes,
+				cookTimeMinutes: recipes.cookTimeMinutes
 			}));
 		});
 	}
