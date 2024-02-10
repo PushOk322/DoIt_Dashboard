@@ -18,7 +18,7 @@ const initialState: IProductsData = {
 };
 
 // Async thunk to fetch productss data
-export const fetchProductsData = createAsyncThunk("productsData/fetchProductsData", async () => {
+export const fetchProductsData = createAsyncThunk( "productsData/fetchProductsData", async () => {
 	try {
 		const response = await fetch("https://dummyjson.com/products"); // Replace with your API endpoint
 		const data = await response.json();

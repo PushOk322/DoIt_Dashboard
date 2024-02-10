@@ -1,7 +1,6 @@
-// Table.tsx
 import React, { FC, useEffect, useMemo } from "react";
 import "./Table.scss";
-import { useAppSelector, useAppDispatch } from "@/app/Redux/store";
+import { useAppSelector, useAppDispatch, RootState } from "@/app/Redux/store";
 import { fetchUsersData } from "@/app/Redux/slice/users/usersSlice";
 import { fetchRecipesData } from "@/app/Redux/slice/recipes/recipesSlice";
 import { fetchProductsData } from "@/app/Redux/slice/products/productsSlice";
@@ -10,53 +9,33 @@ import { fetchPostsData } from "@/app/Redux/slice/posts/postsSlice";
 import TableHead from "./TableHead/TableHead";
 import TableBody from "./TableBody/TableBody";
 
+import { Action, ThunkAction } from "@reduxjs/toolkit";
+
+type categories = "users" | "recipes" | "products" | "carts" | "posts";
+
+interface CategoryMap {
+	fetchAction: () => ThunkAction<void, RootState, unknown, Action>;
+	dataSelector: (state: RootState) => any;
+}
+
+const categoryMap: Record<categories, CategoryMap> = {
+	users: { fetchAction: fetchUsersData, dataSelector: (state) => state.usersReducer.users },
+	recipes: { fetchAction: fetchRecipesData, dataSelector: (state) => state.recipesReducer.recipes },
+	products: { fetchAction: fetchProductsData, dataSelector: (state) => state.productsReducer.products },
+	carts: { fetchAction: fetchCartsData, dataSelector: (state) => state.cartsReducer.carts },
+	posts: { fetchAction: fetchPostsData, dataSelector: (state) => state.postsReducer.posts }
+};
 const Table: FC = () => {
 	const dispatch = useAppDispatch();
-	const chosenCategory = useAppSelector((state) => state.categoryReducer.categories.chosenCategory.toLowerCase());
+	const chosenCategory: categories = useAppSelector((state) => state.categoryReducer.categories.chosenCategory);
 
 	useEffect(() => {
-		switch (chosenCategory) {
-			case "users":
-				dispatch(fetchUsersData());
-				break;
-			case "recipes":
-				dispatch(fetchRecipesData());
-				break;
-			case "products":
-				dispatch(fetchProductsData());
-				break;
-			case "carts":
-				dispatch(fetchCartsData());
-				break;
-			case "posts":
-				dispatch(fetchPostsData());
-				break;
-			default:
-				break;
-		}
+		const { fetchAction } = categoryMap[chosenCategory];
+		dispatch(fetchAction());
 	}, [chosenCategory, dispatch]);
 
-	let data: any;
-
-	switch (chosenCategory) {
-		case "users":
-			data = useAppSelector((state) => state.usersReducer.users);
-			break;
-		case "recipes":
-			data = useAppSelector((state) => state.recipesReducer.recipes);
-			break;
-		case "products":
-			data = useAppSelector((state) => state.productsReducer.products);
-			break;
-		case "carts":
-			data = useAppSelector((state) => state.cartsReducer.carts);
-			break;
-		case "posts":
-			data = useAppSelector((state) => state.postsReducer.posts);
-			break;
-		default:
-			data = [];
-	}
+	const { dataSelector } = categoryMap[chosenCategory];
+	const data = useAppSelector(dataSelector);
 
 	const chosenSort = useAppSelector((state) => state.sortReducer);
 

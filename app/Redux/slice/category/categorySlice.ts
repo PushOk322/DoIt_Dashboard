@@ -4,15 +4,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface ICategoryData {
 	categories: {
-		chosenCategory: string;
+		chosenCategory: "users" | "recipes" | "products" | "carts" | "posts";
 		baseCategories: string[];
 	};
 }
 
 const initialState: ICategoryData = {
 	categories: {
-		chosenCategory: "Users",
-		baseCategories: ["Users", "Products", "Posts", "Carts", "Recipes"]
+		chosenCategory: "users",
+		baseCategories: ["users", "products", "posts", "carts", "recipes"]
 	}
 };
 
@@ -22,10 +22,10 @@ const categoryData = createSlice({
 	reducers: {
 		setChosenCategory: (state, action) => {
 			state.categories.chosenCategory = action.payload;
-		},
+		}
 	}
 });
 
-export const { setChosenCategory} = categoryData.actions;
+export const { setChosenCategory } = categoryData.actions;
 
 export default categoryData.reducer;

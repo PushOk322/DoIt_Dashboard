@@ -4,9 +4,9 @@
 	max-width: 1170px;
 	height: auto;
 	border-collapse: collapse;
-
 	border: 2px solid #20252b;
 	background: transparent;
+	
 	&__head {
 		padding: 0px 44px;
 		border-bottom: 2px solid #20252b;
@@ -23,12 +23,12 @@
 		line-height: 100%;
 		text-transform: uppercase;
 		color: #e6e6e6;
+		cursor: pointer;
 
 		span {
 			opacity: 0.88;
 		}
 
-		cursor: pointer;
 	}
 
 	&__head-item-block {

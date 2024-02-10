@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
-export interface IPosts {
+export interface IPost {
 	id: number;
 	userId: number;
 	title: string;
@@ -8,45 +8,46 @@ export interface IPosts {
 }
 
 export interface IPostsData {
-	posts: IPosts[];
+	posts: IPost[];
 }
 
 const initialState: IPostsData = {
 	posts: []
 };
 
-// Async thunk to fetch postss data
-export const fetchPostsData = createAsyncThunk("postsData/fetchPostsData", async () => {
-	try {
-		const response = await fetch("https://dummyjson.com/posts"); // Replace with your API endpoint
-		const data = await response.json();
+// Async thunk to fetch posts data
+export const fetchPostsData = createAsyncThunk(
+	"postsData/fetchPostsData",
+	async (): Promise<IPostsData> => {
+		try {
+			const response = await fetch("https://dummyjson.com/posts"); // Replace with your API endpoint
+			if (!response.ok) {
+				throw new Error("Failed to fetch posts data");
+			}
+			const data: IPostsData = await response.json();
 
-		return data;
-	} catch (error) {
-		throw Error("Failed to fetch posts data");
+			return data;
+		} catch (error) {
+			throw new Error("Failed to fetch posts data");
+		}
 	}
-});
+);
 
-const postsData = createSlice({
+const postsDataSlice = createSlice({
 	name: "postsData",
 	initialState,
 	reducers: {
-		setChosenPosts: (state, action) => {
-			// Modify state if needed based on action payload
+		setChosenPosts: (state, action: PayloadAction<IPost[]>) => {
+			state.posts = action.payload;
 		}
 	},
 	extraReducers: (builder) => {
-		builder.addCase(fetchPostsData.fulfilled, (state, action) => {
-			state.posts = action.payload.posts.map((posts: any) => ({
-				id: posts.id,
-				userId: posts.userId,
-				title: posts.title,
-				tags: posts.tags
-			}));
+		builder.addCase(fetchPostsData.fulfilled, (state, action: PayloadAction<IPostsData>) => {
+			state.posts = action.payload.posts;
 		});
 	}
 });
 
-export const { setChosenPosts } = postsData.actions;
+export const { setChosenPosts } = postsDataSlice.actions;
 
-export default postsData.reducer;
+export default postsDataSlice.reducer;

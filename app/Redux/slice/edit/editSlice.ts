@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface IEdit {
-    isActive: boolean;
+	isActive: boolean;
 }
 
 const initialState: IEdit = {
-    isActive: true,
+	isActive: false,
 };
 
 const editData = createSlice({
@@ -13,7 +13,7 @@ const editData = createSlice({
 	initialState,
 	reducers: {
 		setEditActive: (state, action) => {
-            state.isActive = !state.isActive;
+			state.isActive = !state.isActive;
 		}
 	}
 });
