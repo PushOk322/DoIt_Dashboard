@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 export interface IUser {
 	id: number;
@@ -16,15 +16,20 @@ const initialState: IUsersData = {
 	users: []
 };
 
-// Async thunk to fetch users data
-export const fetchUsersData = createAsyncThunk("usersData/fetchUsersData", async () => {
+// Async thunk to fetch posts data
+export const fetchUsersData = createAsyncThunk<IUsersData>("postsData/fetchUsersData", async function (): Promise<IUsersData> {
 	try {
-		const response = await fetch("https://dummyjson.com/users"); // Replace with your API endpoint
-		const data = await response.json();
+		const response = await fetch("https://dummyjson.com/users");
+
+		if (!response.ok) {  
+			throw new Error("Server Error!");
+		}
+
+		const data: IUsersData = await response.json();
 
 		return data;
 	} catch (error) {
-		throw Error("Failed to fetch users data");
+		throw new Error("Server Error!");
 	}
 });
 

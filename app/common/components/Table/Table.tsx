@@ -7,7 +7,7 @@ import { fetchProductsData } from "@/app/Redux/slice/products/productsSlice";
 import { fetchCartsData } from "@/app/Redux/slice/carts/cartsSlice";
 import { fetchPostsData } from "@/app/Redux/slice/posts/postsSlice";
 import TableHead from "./TableHead/TableHead";
-import TableBody from "./TableBody/TableBody";
+import { TableBody } from "./TableBody/TableBody";
 
 import { Action, ThunkAction } from "@reduxjs/toolkit";
 
@@ -57,10 +57,12 @@ const Table: FC = () => {
 	}, [data, chosenSort]);
 
 	return (
-		<table className="table">
-			<TableHead data={sortedData} />
-			<TableBody data={sortedData} />
-		</table>
+		<div className="table__container">
+			<table className="table">
+				<TableHead data={sortedData} />
+				<TableBody data={sortedData} />
+			</table>
+		</div>
 	);
 };
 

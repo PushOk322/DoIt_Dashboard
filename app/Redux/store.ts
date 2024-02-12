@@ -15,25 +15,25 @@ import productsReducer from "./slice/products/productsSlice";
 import sortReducer from "./slice/sort/sortSlice";
 import editReducer from "./slice/edit/editSlice";
 
-const createNoopStorage = () => {
-	return {
-		getItem(_key: any) {
-			return Promise.resolve(null);
-		},
-		setItem(_key: any, value: any) {
-			return Promise.resolve(value);
-		},
-		removeItem(_key: any) {
-			return Promise.resolve();
-		}
-	};
-};
-const storage = typeof window !== "undefined" ? createWebStorage("local") : createNoopStorage();
+// const createNoopStorage = () => {
+// 	return {
+// 		getItem(_key: any) {
+// 			return Promise.resolve(null);
+// 		},
+// 		setItem(_key: any, value: any) {
+// 			return Promise.resolve(value);
+// 		},
+// 		removeItem(_key: any) {
+// 			return Promise.resolve();
+// 		}
+// 	};
+// };
+// const storage = typeof window !== "undefined" ? createWebStorage("local") : createNoopStorage();
 
-const persistConfig = {
-	key: "root",
-	storage
-};
+// const persistConfig = {
+// 	key: "root",
+// 	storage
+// };
 
 const rootReducer = combineReducers({
 	categoryReducer,
@@ -46,10 +46,10 @@ const rootReducer = combineReducers({
 	editReducer
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-	reducer: persistedReducer,
+	reducer: rootReducer,
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({
 			serializableCheck: {
@@ -59,9 +59,9 @@ const store = configureStore({
 	devTools: true
 });
 
-export const persistor = persistStore(store);
+// export const persistor = persistStore(store);
 
-persistor.purge();
+// persistor.purge();
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

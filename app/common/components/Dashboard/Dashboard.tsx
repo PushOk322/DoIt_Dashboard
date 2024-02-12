@@ -22,6 +22,7 @@ export default function Dashboard() {
 	return (
 		<div className="dashboard">
 			<TopNav></TopNav>
+			
 			<Table></Table>
 		</div>
 	);

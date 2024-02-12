@@ -16,17 +16,20 @@ export default function functionalRow() {
 		state.editReducer.isActive;
 	});
 
-    const handleEditCLick = ():void => {
-        dispatch(setEditActive(""));
-    };
+	const handleEditCLick = (): void => {
+		dispatch(setEditActive(""));
+	};
 
-    useEffect(() => {
-        
-    },[editState]);
+	useEffect(() => {}, [editState]);
 
 	return (
 		<div className="functional-row">
-            <DefaultButton handleClick={() => { handleEditCLick() }} buttonValue={"Edit mode" }></DefaultButton>
+			<DefaultButton
+				handleClick={() => {
+					handleEditCLick();
+				}}
+				buttonValue={"Edit mode"}
+			></DefaultButton>
 		</div>
 	);
 }

@@ -1,24 +1,47 @@
+@import "../../../media_mixin.scss";
 .table {
-	margin: 30px 0 30px 0;
 	width: 100%;
-	max-width: 1170px;
-	height: auto;
 	border-collapse: collapse;
 	border: 2px solid #20252b;
 	background: transparent;
-	
+
+	@include _768 {
+		width: 1170px;
+		overflow-x: scroll;
+	}
+
+	&__container {
+		margin: 30px 0 30px 0;
+		width: 100%;
+		max-width: 1170px;
+		height: auto;
+		justify-content: flex-start;
+
+		@include _768 {
+			padding: 0 16px;
+			overflow-x: scroll;
+		}
+	}
+
 	&__head {
 		padding: 0px 44px;
 		border-bottom: 2px solid #20252b;
+		width: 100%;
 	}
 
 	&__head-row {
 		height: 66px;
 	}
 
-	&__head-item {
+	&__container,
+	&__head-item,
+	&__body-item,
+	&__body-tag {
 		font-family: var(--font-family);
 		font-weight: 700;
+	}
+
+	&__head-item {
 		font-size: 16px;
 		line-height: 100%;
 		text-transform: uppercase;
@@ -28,11 +51,16 @@
 		span {
 			opacity: 0.88;
 		}
+	}
 
+	&__head-item-block,
+	&__head-arrows,
+	&__body-tag-container,
+	&__body-tag {
+		display: flex;
 	}
 
 	&__head-item-block {
-		display: flex;
 		flex-direction: row;
 		align-items: center;
 		gap: 5px;
@@ -41,7 +69,6 @@
 	}
 
 	&__head-arrows {
-		display: flex;
 		flex-direction: column;
 		gap: 3px;
 	}
@@ -54,6 +81,7 @@
 
 	&__body {
 		padding: 0px 44px;
+		width: 100%;
 	}
 
 	&__body-row {
@@ -61,12 +89,10 @@
 	}
 
 	&__body-item {
-		font-family: var(--font-family);
 		font-weight: 400;
 		font-size: 16px;
 		line-height: 100%;
 		color: #67707a;
-
 		text-align: center;
 	}
 
@@ -78,11 +104,10 @@
 		background: transparent;
 		width: fit-content;
 
-		color:#67707a;
+		color: #67707a;
 	}
 
 	&__body-tag-container {
-		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		gap: 3px;
@@ -94,12 +119,8 @@
 		padding: 4px 30px;
 		width: auto;
 		height: 24px;
-		display: flex;
 		justify-content: center;
 		align-items: center;
-
-		font-family: var(--font-family);
-		font-weight: 700;
 		font-size: 16px;
 		line-height: 100%;
 		text-align: center;

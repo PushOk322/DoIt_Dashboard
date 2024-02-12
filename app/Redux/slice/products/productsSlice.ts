@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk,PayloadAction } from "@reduxjs/toolkit";
 
 export interface IProducts {
 	id: number;
@@ -17,15 +17,20 @@ const initialState: IProductsData = {
 	products: []
 };
 
-// Async thunk to fetch productss data
-export const fetchProductsData = createAsyncThunk( "productsData/fetchProductsData", async () => {
+// Async thunk to fetch posts data
+export const fetchProductsData = createAsyncThunk<IProductsData>("productsData/fetchProductsData", async function (): Promise<IProductsData> {
 	try {
-		const response = await fetch("https://dummyjson.com/products"); // Replace with your API endpoint
-		const data = await response.json();
+		const response = await fetch("https://dummyjson.com/products");
+
+		if (!response.ok) {
+			throw new Error("Server Error!");
+		}
+
+		const data: IProductsData = await response.json();
 
 		return data;
 	} catch (error) {
-		throw Error("Failed to fetch products data");
+		throw new Error("Server Error!");
 	}
 });
 
@@ -48,6 +53,15 @@ const productsData = createSlice({
 				stock: products.stock
 			}));
 			console.log("🚀 ~ builder.addCase ~ state.productss:", state.products);
+		})
+		.addCase(fetchProductsData.pending, (state) => {
+			// Handle pending state
+			// You can update loading state or any other relevant state here
+		})
+		.addCase(fetchProductsData.rejected, (state, action) => {
+			// Handle rejected state
+			// You can update error state or any other relevant state here
+			console.error("Failed to fetch posts data:", action.error.message);
 		});
 	}
 });

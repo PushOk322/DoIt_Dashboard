@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import TableBodyTag from "./TableBodyTag";
-import { useAppSelector } from "@/app/Redux/store";
+import { useSelector } from "react-redux";
 
 interface Props {
     itemValue: string | string[];
     fieldName: string;
 }
 
-const TableBodyItem: React.FC<Props> = ({ itemValue, fieldName }) => {
-    const isEditable = useAppSelector((state) => state.editReducer.isActive);
+export const TableBodyItem: React.FC<Props> = ({ itemValue, fieldName }) => {
+    const isEditable = useSelector((state:any) => state.editReducer.isActive);
     const [editedValue, setEditedValue] = useState<string>("");
     console.log("🚀 ~ editedValue:", editedValue)
 
@@ -46,4 +46,3 @@ const TableBodyItem: React.FC<Props> = ({ itemValue, fieldName }) => {
     );
 };
 
-export default TableBodyItem;

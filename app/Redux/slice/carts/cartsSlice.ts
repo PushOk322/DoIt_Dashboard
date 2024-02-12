@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ICart {
 	id: number;
@@ -16,16 +16,19 @@ const initialState: ICartsData = {
 	carts: []
 };
 
-// Async thunk to fetch carts data
-export const fetchCartsData = createAsyncThunk("cartsData/fetchCartsData", async () => {
+export const fetchCartsData = createAsyncThunk<ICartsData>("cartsData/fetchCartsData", async function (): Promise<ICartsData> {
 	try {
-		const response = await fetch("https://dummyjson.com/carts"); // Replace with your API endpoint
-		const data = await response.json();
-		console.log("🚀 ~ data:", data);
+		const response = await fetch("https://dummyjson.com/carts");
+
+		if (!response.ok) {
+			throw new Error("Server Error!");
+		}
+
+		const data: ICartsData = await response.json();
 
 		return data;
 	} catch (error) {
-		throw Error("Failed to fetch carts data");
+		throw new Error("Server Error!");
 	}
 });
 
@@ -43,11 +46,20 @@ const cartsData = createSlice({
 				id: cart.id,
 				total: cart.total,
 				discountedTotal: cart.discountedTotal,
-				userId: cart.userId,
+				userId: cart.userId
 				// totalProducts: cart.totalProducts
 			}));
 			console.log("🚀 ~ builder.addCase ~ state.carts:", state.carts);
-		});
+		})
+			.addCase(fetchCartsData.pending, (state) => {
+				// Handle pending state
+				// You can update loading state or any other relevant state here
+			})
+			.addCase(fetchCartsData.rejected, (state, action) => {
+				// Handle rejected state
+				// You can update error state or any other relevant state here
+				console.error("Failed to fetch posts data:", action.error.message);
+			});
 	}
 });
 
