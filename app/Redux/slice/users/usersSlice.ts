@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+// import { WritableDraft } from "immer";
 
 export interface IUser {
 	id: number;
@@ -16,12 +17,12 @@ const initialState: IUsersData = {
 	users: []
 };
 
-// Async thunk to fetch posts data
+// Async thunk to fetch users data
 export const fetchUsersData = createAsyncThunk<IUsersData>("postsData/fetchUsersData", async function (): Promise<IUsersData> {
 	try {
 		const response = await fetch("https://dummyjson.com/users");
 
-		if (!response.ok) {  
+		if (!response.ok) {
 			throw new Error("Server Error!");
 		}
 
@@ -38,7 +39,22 @@ const usersData = createSlice({
 	initialState,
 	reducers: {
 		setChosenUsers: (state, action) => {
-			// Modify state if needed based on action payload
+			const { id, fieldName, modifiedValue } = action.payload;
+			console.log("🚀 ~ id, fieldName, modifiedValue:", id, fieldName, modifiedValue)
+
+			// Create a new array of users with the updated field value
+			const updatedUsers = state.users.map((user) => {
+				if (user.id === id) {
+					return {
+						...user,
+						[fieldName]: modifiedValue
+					};
+				}
+				return user;
+			});
+
+			// Update the state with the new array of users
+			state.users = updatedUsers;
 		}
 	},
 	extraReducers: (builder) => {

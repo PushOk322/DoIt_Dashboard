@@ -9,6 +9,7 @@ import { fetchUsersData } from "@/app/Redux/slice/users/usersSlice";
 
 import TopNav from "../TopNav/TopNav";
 import Table from "../Table/Table";
+import FunctionalRow from "../FunctionalRow/FunctionalRow";
 
 export default function Dashboard() {
 	
@@ -22,7 +23,7 @@ export default function Dashboard() {
 	return (
 		<div className="dashboard">
 			<TopNav></TopNav>
-			
+			<FunctionalRow></FunctionalRow>
 			<Table></Table>
 		</div>
 	);

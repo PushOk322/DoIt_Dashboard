@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { FunctionalButton } from "@/app/common/components/CustomMUI/CustomMUI";
 
 interface IDefaultButtonProps {
     buttonValue: string;
@@ -9,7 +10,7 @@ interface IDefaultButtonProps {
 
 const DefaultButton: React.FC<IDefaultButtonProps> = ({ buttonValue, handleClick }) => {
     
-	return <button className="default-button" onClick={()=>{handleClick()}}>{buttonValue}</button>;
+	return <FunctionalButton onClick={()=>{handleClick()}}>{buttonValue}</FunctionalButton>;
 };
 
 export default DefaultButton;

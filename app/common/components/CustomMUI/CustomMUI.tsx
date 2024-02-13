@@ -1,4 +1,5 @@
-import { Button, styled } from "@mui/material";
+import { Button, Input, styled } from "@mui/material";
+import "../../../media_mixin.scss";
 
 export const TopNavButton = styled(Button)(() => ({
 	fontFamily: "Rubik",
@@ -18,15 +19,64 @@ export const TopNavButton = styled(Button)(() => ({
 		border: "2px solid #20252b",
 		color: "#0f1215"
 	},
-	"@media (max-width: 1200px)": {
+
+	"@media (max-width: 1170px)": {
 		width: "100%",
 		height: "62px",
 		fontSize: "18px"
 	},
+
 	"@media (max-width: 600px)": {
 		width: "100%",
 		height: "52px",
 		fontSize: "14px",
 		border: "1px solid"
+	}
+}));
+
+export const FunctionalButton = styled(Button)(() => ({
+	fontFamily: "Rubik",
+	fontSize: "16px",
+	fontWeight: 700,
+	color: "#f5f5f5",
+	textTransform: "none",
+	background: "#1a222d",
+	width: "fit-content",
+	height: "51px",
+	padding: "16px 44px",
+
+	"&.active": {
+		background: "#d8dfeb",
+		border: "2px solid #20252b",
+		color: "#0f1215"
+	},
+	"@media (max-width: 1170px)": {
+		height: "62px",
+		fontSize: "14px"
+	},
+	"@media (max-width: 600px)": {
+		height: "52px",
+		fontSize: "12px"
+	}
+}));
+
+export const InputDefault = styled(Input)(() => ({
+	fontFamily: "Rubik",
+	fontSize: "16px",
+	fontWeight: 400,
+	color: "#cccdcd",
+	textTransform: "none",
+	background: "#0f1215",
+	width: "100%",
+	height: "40px",
+	padding: "12px 16px",
+	border: "2px solid #20252b",
+	borderRadius: "4px",
+
+	"@media (max-width: 1170px)": {
+		fontSize: "14px"
+	},
+	"@media (max-width: 600px)": {
+		fontSize: "12px"
 	}
 }));

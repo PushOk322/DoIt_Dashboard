@@ -3,7 +3,7 @@ import React from "react";
 import { TableBodyRow } from "./TableBodyRow";
 
 interface Props {
-	data: any[];
+	data: any;
 }
 
 export const TableBody: React.FC<Props> = ({ data }) => {
@@ -15,4 +15,3 @@ export const TableBody: React.FC<Props> = ({ data }) => {
 		</tbody>
 	);
 };
-

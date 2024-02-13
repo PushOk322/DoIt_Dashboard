@@ -32,7 +32,7 @@ const Table: FC = () => {
 	useEffect(() => {
 		const { fetchAction } = categoryMap[chosenCategory];
 		dispatch(fetchAction());
-	}, [chosenCategory, dispatch]);
+	}, [chosenCategory]);
 
 	const { dataSelector } = categoryMap[chosenCategory];
 	const data = useAppSelector(dataSelector);

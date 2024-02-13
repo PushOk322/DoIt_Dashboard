@@ -11,7 +11,7 @@ export const TableBodyRow: React.FC<Props> = ({ item }) => {
 	return (
 		<tr className="table__body-row">
 			{Object.keys(item).map((field, index) => (
-                <TableBodyItem itemValue={item[field]} fieldName={field} key={index}></TableBodyItem>
+				<TableBodyItem id={ item.id} itemValue={item[field]} fieldName={field} key={index}></TableBodyItem>
 			))}
 		</tr>
 	);
