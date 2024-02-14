@@ -1,0 +1,34 @@
+.acordeon {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+	&__head {
+		width: 100%;
+		max-width: 600px;
+		background: #d8dfeb;
+		width: 100%;
+		height: 82px;
+		font-family: var(--font-family);
+		font-weight: 700;
+		font-size: 22px;
+		line-height: 100%;
+		color: #0f1215;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__content {
+		width: 100%;
+		max-width: 600px;
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+	}
+
+	&__tab {
+		border: 1px solid #20252b;
+	}
+}

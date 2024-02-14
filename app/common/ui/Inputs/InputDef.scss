@@ -1,0 +1,24 @@
+.input-container {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	gap: 2px;
+
+	&__url-pre {
+		border: 2px solid #20252b;
+		border-radius: 4px 0 0 4px;
+		width: 94px;
+		height: 40px;
+		background: #20252b;
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 100%;
+		color: #78828f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+	}
+
+    
+}

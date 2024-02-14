@@ -2,19 +2,13 @@
 import React from "react";
 import "./InputDef.scss";
 
-
+import { TextFieldDef } from "../../components/CustomMUI/CustomMUI";
 
 interface Props {
 	placeholder?: string;
-	isMini?: boolean;
-	type: "email" | "url" | "text";
 }
-const InputDef: React.FC<Props> = ({ placeholder, isMini, type }) => {
-
-	return (
-		<>
-		</>
-	);
+const TextArea: React.FC<Props> = ({ placeholder }) => {
+	return <TextFieldDef  label={placeholder} multiline maxRows={4}></TextFieldDef>;
 };
 
-export default InputDef;
+export default TextArea;

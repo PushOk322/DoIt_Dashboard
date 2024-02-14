@@ -19,9 +19,10 @@ const InputDef: React.FC<Props> = ({ placeholder, isMini, type }) => {
 	}
 
 	return (
-		<>
+		<div className="input-container">
+			{type === "url" && <div className="input-container__url-pre">Doit.gg/</div>}
 			{inputComponent}
-		</>
+		</div>
 	);
 };
 

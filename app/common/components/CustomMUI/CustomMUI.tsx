@@ -1,4 +1,4 @@
-import { Button, Input, styled } from "@mui/material";
+import { Accordion, AccordionSummary, AccordionDetails, Button, Input, TextField, styled } from "@mui/material";
 import "../../../media_mixin.scss";
 
 export const TopNavButton = styled(Button)(() => ({
@@ -72,6 +72,74 @@ export const InputDefault = styled(Input)(() => ({
 	padding: "12px 16px",
 	border: "2px solid #20252b",
 	borderRadius: "4px",
+
+	"@media (max-width: 1170px)": {
+		fontSize: "14px"
+	},
+	"@media (max-width: 600px)": {
+		fontSize: "12px"
+	}
+}));
+
+export const TextFieldDef = styled(TextField)(() => ({
+	fontFamily: "Rubik",
+	fontSize: "16px",
+	fontWeight: 400,
+	color: "#cccdcd !important",
+	textTransform: "none",
+	background: "#0f1215",
+	width: "100%",
+	border: "2px solid #20252b",
+	borderRadius: "4px",
+	textarea: { color: "#cccdcd !important", "&::placeholder": { color: " #20252b !important" } },
+
+	"@media (max-width: 1170px)": {
+		fontSize: "14px"
+	},
+	"@media (max-width: 600px)": {
+		fontSize: "12px"
+	}
+}));
+
+export const MyAccordion = styled(Accordion)(() => ({
+	fontFamily: "Rubik",
+	fontSize: "16px",
+	fontWeight: 400,
+	color: "#cccdcd",
+	textTransform: "none",
+	background: "#0f1215",
+	width: "100%",
+	border: "2px solid #20252b",
+	borderRadius: "4px",
+	"@media (max-width: 1170px)": {
+		fontSize: "14px"
+	},
+	"@media (max-width: 600px)": {
+		fontSize: "12px"
+	}
+}));
+
+export const MyAccordionSummary = styled(AccordionSummary)(() => ({
+	fontFamily: "Rubik",
+	fontSize: "22px",
+	fontWeight: 500,
+	color: "#cccdcd",
+	textTransform: "none",
+	background: "#0f1215",
+	width: "100%",
+
+	"@media (max-width: 1170px)": {
+		fontSize: "14px"
+	},
+	"@media (max-width: 600px)": {
+		fontSize: "12px"
+	}
+}));
+
+export const MyAccordionDetails = styled(AccordionDetails)(() => ({
+	display: "flex",
+	flexDirection: "column",
+	gap: "10px",
 
 	"@media (max-width: 1170px)": {
 		fontSize: "14px"
