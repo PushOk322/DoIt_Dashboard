@@ -2,6 +2,9 @@
 import React from "react";
 import "./Dropdown.scss";
 
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { grey } from "@mui/material/colors";
+
 import { MenuItem, Select, SelectChangeEvent, MenuList } from "@mui/material";
 
 interface Props {
@@ -19,6 +22,7 @@ const Dropdown: React.FC<Props> = ({ options, label }) => {
 		<Select
 			defaultValue=""
 			variant="outlined"
+			IconComponent={() => <ExpandMoreIcon sx={{ color: grey[500] }} />}
 			sx={{
 				width: "100%",
 				height: 40,

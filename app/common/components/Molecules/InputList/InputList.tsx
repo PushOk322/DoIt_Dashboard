@@ -7,13 +7,11 @@ import InputDef from "@/app/common/ui/Inputs/InputDef";
 type InputType = "text" | "email" | "url";
 
 interface Props {
-	inputPlaceholder: string;
-	dropdownPlaceholder: string;
 	inputTypes: InputType[];
 	labels: string[];
 }
 
-const InputDropdown: React.FC<Props> = ({ labels, inputTypes }) => {
+const InputList: React.FC<Props> = ({ labels, inputTypes }) => {
 	return (
 		<div className="input-list">
 			{labels.map((label, index) => {
@@ -28,4 +26,4 @@ const InputDropdown: React.FC<Props> = ({ labels, inputTypes }) => {
 	);
 };
 
-export default InputDropdown;
+export default InputList;

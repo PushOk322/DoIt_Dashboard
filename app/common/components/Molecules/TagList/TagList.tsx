@@ -12,11 +12,11 @@ const TagList: React.FC<Props> = ({ labels }) => {
 	const [active, setActive] = useState<string>(labels[0]);
 
 	return (
-		<>
+		<div className="tag-list"> 
 			{labels.map((label, index) => {
 				return <Tag label={label} isActive={label === active && true} key={index} setActive={setActive}></Tag>;
 			})}
-		</>
+		</div>
 	);
 };
 

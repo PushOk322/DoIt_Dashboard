@@ -127,6 +127,9 @@ export const MyAccordionSummary = styled(AccordionSummary)(() => ({
 	textTransform: "none",
 	background: "#0f1215",
 	width: "100%",
+	display: "flex",
+	flexDirection: "row",
+	alignItems: "center",
 
 	"@media (max-width: 1170px)": {
 		fontSize: "14px"
@@ -139,7 +142,7 @@ export const MyAccordionSummary = styled(AccordionSummary)(() => ({
 export const MyAccordionDetails = styled(AccordionDetails)(() => ({
 	display: "flex",
 	flexDirection: "column",
-	gap: "10px",
+	gap: "20px",
 
 	"@media (max-width: 1170px)": {
 		fontSize: "14px"
